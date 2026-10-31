@@ -71,23 +71,26 @@ def get_site(site_id: int):
 from fastapi import status
 
 @app.post(
-    "/sites",
+    "/sites/{site_id}",
     response_model=SiteResponse,
     status_code=status.HTTP_201_CREATED
 )
-def create_site(site: SiteCreate):
+def create_site(site_id: int, site: SiteCreate):
 
-    # 1. Generate a unique site ID
-    new_id = max(sites.keys(), default=0) + 1
+    # 1. Check for duplicates
+    if site_id in sites:
+        raise HTTPException(
+            status_code=409,
+            detail="Site already exists"
+        )
 
     # 2. Convert Pydantic model to dictionary
     new_site = site.model_dump()
 
-    # 3. Add the generated ID
-    new_site["site_id"] = new_id
+    # 3. Add site ID
+    new_site["site_id"] = site_id
 
-    # 4. Store the new site
-    sites[new_id] = new_site
+    # 4. Save new site
+    sites[site_id] = new_site
 
-    # 5. Return the created site
     return new_site

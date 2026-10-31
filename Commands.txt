@@ -1,0 +1,8 @@
+Create the virtual environment if you have not already:
+
+python -m venv .venv
+
+
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+
+.\.venv\Scripts\Activate.ps1
