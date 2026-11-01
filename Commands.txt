@@ -6,3 +6,17 @@ python -m venv .venv
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 
 .\.venv\Scripts\Activate.ps1
+
+python -m uvicorn app.main:app --reload --reload-dir app
+
+When you finish working on Laptop A:
+
+git add .
+git commit -m "Finished working on feature X"
+git push
+
+When you sit down at Laptop B (before you start working):
+
+git pull
+
+Going one folder back: cd ..
