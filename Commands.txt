@@ -12,7 +12,7 @@ python -m uvicorn app.main:app --reload --reload-dir app
 When you finish working on Laptop A:
 
 git add .
-git commit -m "Finished working on feature X"
+git commit -m "Finished working on modular"
 git push
 
 When you sit down at Laptop B (before you start working):
